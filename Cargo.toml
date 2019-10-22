@@ -13,13 +13,13 @@ repository = "https://github.com/nrf-rs/nrf52840-pac"
 edition = "2018"
 
 [dependencies]
-bare-metal = "0.2.4"
-vcell = "0.1"
+bare-metal = "0.2.5"
+vcell = "0.1.2"
 cortex-m = ">= 0.5.8, < 0.7"
 
 [dependencies.cortex-m-rt]
 optional = true
-version = "0.6.8"
+version = "0.6.10"
 
 [features]
 rt = ["cortex-m-rt/device"]
