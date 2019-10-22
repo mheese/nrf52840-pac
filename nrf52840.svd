@@ -39784,7 +39784,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\
             <name>ADDR</name>
             <description>Description cluster: Configure the word-aligned start address of region n to protect</description>
             <addressOffset>0x000</addressOffset>
-            <access>read-writeonce</access>
+            <access>read-writeOnce</access>
             <resetValue>0x00000000</resetValue>
             <fields>
               <field>
@@ -39799,7 +39799,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\
             <name>SIZE</name>
             <description>Description cluster: Size of region to protect counting from address ACL[n].ADDR. Write '0' as no effect.</description>
             <addressOffset>0x004</addressOffset>
-            <access>read-writeonce</access>
+            <access>read-writeOnce</access>
             <resetValue>0x00000000</resetValue>
             <fields>
               <field>
@@ -39814,7 +39814,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\
             <name>PERM</name>
             <description>Description cluster: Access permissions for region n as defined by start address ACL[n].ADDR and size ACL[n].SIZE</description>
             <addressOffset>0x008</addressOffset>
-            <access>read-writeonce</access>
+            <access>read-writeOnce</access>
             <resetValue>0x00000000</resetValue>
             <fields>
               <field>
