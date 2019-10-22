@@ -1,123 +1,104 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::EVENTS_CALIBRATEDONE {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
+#[doc = "Reader of register EVENTS_CALIBRATEDONE"]
+pub type R = crate::R<u32, super::EVENTS_CALIBRATEDONE>;
+#[doc = "Writer for register EVENTS_CALIBRATEDONE"]
+pub type W = crate::W<u32, super::EVENTS_CALIBRATEDONE>;
+#[doc = "Register EVENTS_CALIBRATEDONE `reset()`'s with value 0"]
+impl crate::ResetValue for super::EVENTS_CALIBRATEDONE {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
+}
+#[doc = "Calibration is complete\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum EVENTS_CALIBRATEDONE_A {
+    #[doc = "0: Event not generated"]
+    NOTGENERATED,
+    #[doc = "1: Event generated"]
+    GENERATED,
+}
+impl From<EVENTS_CALIBRATEDONE_A> for bool {
+    #[inline(always)]
+    fn from(variant: EVENTS_CALIBRATEDONE_A) -> Self {
+        match variant {
+            EVENTS_CALIBRATEDONE_A::NOTGENERATED => false,
+            EVENTS_CALIBRATEDONE_A::GENERATED => true,
         }
     }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
+}
+#[doc = "Reader of field `EVENTS_CALIBRATEDONE`"]
+pub type EVENTS_CALIBRATEDONE_R = crate::R<bool, EVENTS_CALIBRATEDONE_A>;
+impl EVENTS_CALIBRATEDONE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> EVENTS_CALIBRATEDONE_A {
+        match self.bits {
+            false => EVENTS_CALIBRATEDONE_A::NOTGENERATED,
+            true => EVENTS_CALIBRATEDONE_A::GENERATED,
+        }
     }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+    #[doc = "Checks if the value of the field is `NOTGENERATED`"]
+    #[inline(always)]
+    pub fn is_not_generated(&self) -> bool {
+        *self == EVENTS_CALIBRATEDONE_A::NOTGENERATED
+    }
+    #[doc = "Checks if the value of the field is `GENERATED`"]
+    #[inline(always)]
+    pub fn is_generated(&self) -> bool {
+        *self == EVENTS_CALIBRATEDONE_A::GENERATED
     }
 }
-#[doc = r" Value of the field"]
-pub struct EVENTS_CALIBRATEDONER {
-    bits: bool,
-}
-impl EVENTS_CALIBRATEDONER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Proxy"]
-pub struct _EVENTS_CALIBRATEDONEW<'a> {
+#[doc = "Write proxy for field `EVENTS_CALIBRATEDONE`"]
+pub struct EVENTS_CALIBRATEDONE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EVENTS_CALIBRATEDONEW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> EVENTS_CALIBRATEDONE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: EVENTS_CALIBRATEDONE_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "Event not generated"]
+    #[inline(always)]
+    pub fn not_generated(self) -> &'a mut W {
+        self.variant(EVENTS_CALIBRATEDONE_A::NOTGENERATED)
+    }
+    #[doc = "Event generated"]
+    #[inline(always)]
+    pub fn generated(self) -> &'a mut W {
+        self.variant(EVENTS_CALIBRATEDONE_A::GENERATED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
-    #[doc = "Bit 0"]
-    #[inline]
-    pub fn events_calibratedone(&self) -> EVENTS_CALIBRATEDONER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        EVENTS_CALIBRATEDONER { bits }
+    #[doc = "Bit 0 - Calibration is complete"]
+    #[inline(always)]
+    pub fn events_calibratedone(&self) -> EVENTS_CALIBRATEDONE_R {
+        EVENTS_CALIBRATEDONE_R::new((self.bits & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
-    #[doc = "Bit 0"]
-    #[inline]
-    pub fn events_calibratedone(&mut self) -> _EVENTS_CALIBRATEDONEW {
-        _EVENTS_CALIBRATEDONEW { w: self }
+    #[doc = "Bit 0 - Calibration is complete"]
+    #[inline(always)]
+    pub fn events_calibratedone(&mut self) -> EVENTS_CALIBRATEDONE_W {
+        EVENTS_CALIBRATEDONE_W { w: self }
     }
 }

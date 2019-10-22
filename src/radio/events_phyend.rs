@@ -1,123 +1,104 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::EVENTS_PHYEND {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
+#[doc = "Reader of register EVENTS_PHYEND"]
+pub type R = crate::R<u32, super::EVENTS_PHYEND>;
+#[doc = "Writer for register EVENTS_PHYEND"]
+pub type W = crate::W<u32, super::EVENTS_PHYEND>;
+#[doc = "Register EVENTS_PHYEND `reset()`'s with value 0"]
+impl crate::ResetValue for super::EVENTS_PHYEND {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
+}
+#[doc = "Generated in Ble_LR125Kbit, Ble_LR500Kbit and Ieee802154_250Kbit modes when last bit is sent on air.\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum EVENTS_PHYEND_A {
+    #[doc = "0: Event not generated"]
+    NOTGENERATED,
+    #[doc = "1: Event generated"]
+    GENERATED,
+}
+impl From<EVENTS_PHYEND_A> for bool {
+    #[inline(always)]
+    fn from(variant: EVENTS_PHYEND_A) -> Self {
+        match variant {
+            EVENTS_PHYEND_A::NOTGENERATED => false,
+            EVENTS_PHYEND_A::GENERATED => true,
         }
     }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
+}
+#[doc = "Reader of field `EVENTS_PHYEND`"]
+pub type EVENTS_PHYEND_R = crate::R<bool, EVENTS_PHYEND_A>;
+impl EVENTS_PHYEND_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> EVENTS_PHYEND_A {
+        match self.bits {
+            false => EVENTS_PHYEND_A::NOTGENERATED,
+            true => EVENTS_PHYEND_A::GENERATED,
+        }
     }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+    #[doc = "Checks if the value of the field is `NOTGENERATED`"]
+    #[inline(always)]
+    pub fn is_not_generated(&self) -> bool {
+        *self == EVENTS_PHYEND_A::NOTGENERATED
+    }
+    #[doc = "Checks if the value of the field is `GENERATED`"]
+    #[inline(always)]
+    pub fn is_generated(&self) -> bool {
+        *self == EVENTS_PHYEND_A::GENERATED
     }
 }
-#[doc = r" Value of the field"]
-pub struct EVENTS_PHYENDR {
-    bits: bool,
-}
-impl EVENTS_PHYENDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Proxy"]
-pub struct _EVENTS_PHYENDW<'a> {
+#[doc = "Write proxy for field `EVENTS_PHYEND`"]
+pub struct EVENTS_PHYEND_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EVENTS_PHYENDW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> EVENTS_PHYEND_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: EVENTS_PHYEND_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "Event not generated"]
+    #[inline(always)]
+    pub fn not_generated(self) -> &'a mut W {
+        self.variant(EVENTS_PHYEND_A::NOTGENERATED)
+    }
+    #[doc = "Event generated"]
+    #[inline(always)]
+    pub fn generated(self) -> &'a mut W {
+        self.variant(EVENTS_PHYEND_A::GENERATED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
-    #[doc = "Bit 0"]
-    #[inline]
-    pub fn events_phyend(&self) -> EVENTS_PHYENDR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        EVENTS_PHYENDR { bits }
+    #[doc = "Bit 0 - Generated in Ble_LR125Kbit, Ble_LR500Kbit and Ieee802154_250Kbit modes when last bit is sent on air."]
+    #[inline(always)]
+    pub fn events_phyend(&self) -> EVENTS_PHYEND_R {
+        EVENTS_PHYEND_R::new((self.bits & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
-    #[doc = "Bit 0"]
-    #[inline]
-    pub fn events_phyend(&mut self) -> _EVENTS_PHYENDW {
-        _EVENTS_PHYENDW { w: self }
+    #[doc = "Bit 0 - Generated in Ble_LR125Kbit, Ble_LR500Kbit and Ieee802154_250Kbit modes when last bit is sent on air."]
+    #[inline(always)]
+    pub fn events_phyend(&mut self) -> EVENTS_PHYEND_W {
+        EVENTS_PHYEND_W { w: self }
     }
 }

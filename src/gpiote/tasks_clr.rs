@@ -1,57 +1,65 @@
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::TASKS_CLR {
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
+#[doc = "Writer for register TASKS_CLR[%s]"]
+pub type W = crate::W<u32, super::TASKS_CLR>;
+#[doc = "Register TASKS_CLR[%s] `reset()`'s with value 0"]
+impl crate::ResetValue for super::TASKS_CLR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Proxy"]
-pub struct _TASKS_CLRW<'a> {
+#[doc = "Task for writing to pin specified in CONFIG\\[n\\].PSEL. Action on pin is to set it low.\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TASKS_CLR_AW {
+    #[doc = "1: Trigger task"]
+    TRIGGER,
+}
+impl From<TASKS_CLR_AW> for bool {
+    #[inline(always)]
+    fn from(variant: TASKS_CLR_AW) -> Self {
+        match variant {
+            TASKS_CLR_AW::TRIGGER => true,
+        }
+    }
+}
+#[doc = "Write proxy for field `TASKS_CLR`"]
+pub struct TASKS_CLR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TASKS_CLRW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> TASKS_CLR_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TASKS_CLR_AW) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "Trigger task"]
+    #[inline(always)]
+    pub fn trigger(self) -> &'a mut W {
+        self.variant(TASKS_CLR_AW::TRIGGER)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
-    #[doc = "Bit 0"]
-    #[inline]
-    pub fn tasks_clr(&mut self) -> _TASKS_CLRW {
-        _TASKS_CLRW { w: self }
+    #[doc = "Bit 0 - Task for writing to pin specified in CONFIG\\[n\\].PSEL. Action on pin is to set it low."]
+    #[inline(always)]
+    pub fn tasks_clr(&mut self) -> TASKS_CLR_W {
+        TASKS_CLR_W { w: self }
     }
 }

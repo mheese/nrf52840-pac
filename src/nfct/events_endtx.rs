@@ -1,123 +1,104 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::EVENTS_ENDTX {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
+#[doc = "Reader of register EVENTS_ENDTX"]
+pub type R = crate::R<u32, super::EVENTS_ENDTX>;
+#[doc = "Writer for register EVENTS_ENDTX"]
+pub type W = crate::W<u32, super::EVENTS_ENDTX>;
+#[doc = "Register EVENTS_ENDTX `reset()`'s with value 0"]
+impl crate::ResetValue for super::EVENTS_ENDTX {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
+}
+#[doc = "Transmission of data in RAM has ended, and EasyDMA has ended accessing the TX buffer\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum EVENTS_ENDTX_A {
+    #[doc = "0: Event not generated"]
+    NOTGENERATED,
+    #[doc = "1: Event generated"]
+    GENERATED,
+}
+impl From<EVENTS_ENDTX_A> for bool {
+    #[inline(always)]
+    fn from(variant: EVENTS_ENDTX_A) -> Self {
+        match variant {
+            EVENTS_ENDTX_A::NOTGENERATED => false,
+            EVENTS_ENDTX_A::GENERATED => true,
         }
     }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
+}
+#[doc = "Reader of field `EVENTS_ENDTX`"]
+pub type EVENTS_ENDTX_R = crate::R<bool, EVENTS_ENDTX_A>;
+impl EVENTS_ENDTX_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> EVENTS_ENDTX_A {
+        match self.bits {
+            false => EVENTS_ENDTX_A::NOTGENERATED,
+            true => EVENTS_ENDTX_A::GENERATED,
+        }
     }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+    #[doc = "Checks if the value of the field is `NOTGENERATED`"]
+    #[inline(always)]
+    pub fn is_not_generated(&self) -> bool {
+        *self == EVENTS_ENDTX_A::NOTGENERATED
+    }
+    #[doc = "Checks if the value of the field is `GENERATED`"]
+    #[inline(always)]
+    pub fn is_generated(&self) -> bool {
+        *self == EVENTS_ENDTX_A::GENERATED
     }
 }
-#[doc = r" Value of the field"]
-pub struct EVENTS_ENDTXR {
-    bits: bool,
-}
-impl EVENTS_ENDTXR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Proxy"]
-pub struct _EVENTS_ENDTXW<'a> {
+#[doc = "Write proxy for field `EVENTS_ENDTX`"]
+pub struct EVENTS_ENDTX_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EVENTS_ENDTXW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> EVENTS_ENDTX_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: EVENTS_ENDTX_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "Event not generated"]
+    #[inline(always)]
+    pub fn not_generated(self) -> &'a mut W {
+        self.variant(EVENTS_ENDTX_A::NOTGENERATED)
+    }
+    #[doc = "Event generated"]
+    #[inline(always)]
+    pub fn generated(self) -> &'a mut W {
+        self.variant(EVENTS_ENDTX_A::GENERATED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
-    #[doc = "Bit 0"]
-    #[inline]
-    pub fn events_endtx(&self) -> EVENTS_ENDTXR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        EVENTS_ENDTXR { bits }
+    #[doc = "Bit 0 - Transmission of data in RAM has ended, and EasyDMA has ended accessing the TX buffer"]
+    #[inline(always)]
+    pub fn events_endtx(&self) -> EVENTS_ENDTX_R {
+        EVENTS_ENDTX_R::new((self.bits & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
-    #[doc = "Bit 0"]
-    #[inline]
-    pub fn events_endtx(&mut self) -> _EVENTS_ENDTXW {
-        _EVENTS_ENDTXW { w: self }
+    #[doc = "Bit 0 - Transmission of data in RAM has ended, and EasyDMA has ended accessing the TX buffer"]
+    #[inline(always)]
+    pub fn events_endtx(&mut self) -> EVENTS_ENDTX_W {
+        EVENTS_ENDTX_W { w: self }
     }
 }

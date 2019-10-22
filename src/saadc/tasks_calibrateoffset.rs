@@ -1,57 +1,65 @@
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::TASKS_CALIBRATEOFFSET {
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
+#[doc = "Writer for register TASKS_CALIBRATEOFFSET"]
+pub type W = crate::W<u32, super::TASKS_CALIBRATEOFFSET>;
+#[doc = "Register TASKS_CALIBRATEOFFSET `reset()`'s with value 0"]
+impl crate::ResetValue for super::TASKS_CALIBRATEOFFSET {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Proxy"]
-pub struct _TASKS_CALIBRATEOFFSETW<'a> {
+#[doc = "Starts offset auto-calibration\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TASKS_CALIBRATEOFFSET_AW {
+    #[doc = "1: Trigger task"]
+    TRIGGER,
+}
+impl From<TASKS_CALIBRATEOFFSET_AW> for bool {
+    #[inline(always)]
+    fn from(variant: TASKS_CALIBRATEOFFSET_AW) -> Self {
+        match variant {
+            TASKS_CALIBRATEOFFSET_AW::TRIGGER => true,
+        }
+    }
+}
+#[doc = "Write proxy for field `TASKS_CALIBRATEOFFSET`"]
+pub struct TASKS_CALIBRATEOFFSET_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TASKS_CALIBRATEOFFSETW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> TASKS_CALIBRATEOFFSET_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TASKS_CALIBRATEOFFSET_AW) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "Trigger task"]
+    #[inline(always)]
+    pub fn trigger(self) -> &'a mut W {
+        self.variant(TASKS_CALIBRATEOFFSET_AW::TRIGGER)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
-    #[doc = "Bit 0"]
-    #[inline]
-    pub fn tasks_calibrateoffset(&mut self) -> _TASKS_CALIBRATEOFFSETW {
-        _TASKS_CALIBRATEOFFSETW { w: self }
+    #[doc = "Bit 0 - Starts offset auto-calibration"]
+    #[inline(always)]
+    pub fn tasks_calibrateoffset(&mut self) -> TASKS_CALIBRATEOFFSET_W {
+        TASKS_CALIBRATEOFFSET_W { w: self }
     }
 }
